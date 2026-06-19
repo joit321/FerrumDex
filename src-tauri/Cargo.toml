@@ -1,0 +1,53 @@
+[package]
+name = "ferrumdex"
+version = "0.1.0"
+authors = [""]
+edition = "2021"
+
+[lib]
+name = "ferrumdex_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+# Главный движок Tauri и его системные фичи
+tauri = { version = "2.0", features = [] }
+
+# Открытие вкладок в браузере
+tauri-plugin-opener = "2.0.0"
+
+# Асинхронная среда (Токio) с полной поддержкой макросов и таймеров
+tokio = { version = "1.0", features = ["full"] }
+
+# Базовая сериализация (нужна для генерации структур)
+serde = { version = "1.0", features = ["derive"] }
+
+# Экстремально быстрый парсер JSON (заменяет и вытесняет serde_json)
+simd-json = { version = "0.13", features = ["serde"] }
+
+# Асинхронное подключение к Redis через Tokio
+redis = { version = "0.25", features = ["tokio-comp", "aio"] }
+
+# Асинхронная работа с PostgreSQL (с проверкой SQL при компиляции)
+sqlx = { version = "0.7", features = ["runtime-tokio", "postgres", "macros", "chrono", "uuid"] }
+
+# Быстрый и легкий асинхронный клиент для WebSockets API бирж
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+
+# Для обработки сетевых TLS-соединений (HTTPS / WSS)
+native-tls = "0.2"
+
+[features]
+# Оставляем стандартное поведение Tauri для кастомных протоколов
+custom-protocol = ["tauri/custom-protocol"]
+
+# Крейты для сборки приложения
+[build-dependencies]
+tauri-build = { version = "2.6.3", features = [] }
+
+# Настройки компиляции для максимальной скорости (Production-ready)
+[profile.release]
+opt-level = 3        # Максимальная оптимизация кода
+lto = true           # Link-Time Optimization (убирает неиспользуемый код из библиотек)
+codegen-units = 1    # Уменьшает количество параллельных потоков сборки ради лучшей оптимизации
+panic = "abort"      # Убирает раскрутку стека при ошибках, уменьшая размер бинарника и ускоряя его
+strip = true         # Удаляет отладочные символы, делая файл легким
