@@ -5,3 +5,6 @@ This template should help get you started developing with Tauri in vanilla HTML,
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+# FerrumDex
+
+A crypto arbitrage tool tracking exchange rates, commissions, and fees across platforms for profitable trading. Future updates will include P2P market monitoring to surface the best deals. Currently in active development and preparing for beta testing.

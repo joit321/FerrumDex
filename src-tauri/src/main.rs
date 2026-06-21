@@ -1,6 +1,10 @@
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-fn main() {
-    ferrumdex_lib::run()
+// Импортируем модуль парсера, чтобы он был доступен внутри src-tauri
+mod parser; 
+
+#[tokio::main]
+async fn main() {
+    // Запуск программы. Вся магия теперь происходит внутри lib.rs
+    ferrumdex_lib::run();
 }
