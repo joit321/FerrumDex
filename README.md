@@ -1,10 +1,48 @@
-# Tauri + Vanilla TS
+# FerrumDex — Bybit Price Monitor
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+Интерактивный трекер котировок криптовалютной биржи Bybit в реальном времени. Приложение построено на базе высокопроизводительного бэкенда на Rust и легковесного фронтенда на TypeScript.
 
-## Recommended IDE Setup
+## 🚀 Особенности и архитектура
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
-# FerrumDex
+- **Рациональный WebSocket-парсинг**: Приложение не нагружает сеть и процессор. Подключение к стриму Bybit происходит динамически **только** для тех монет, которые выбраны пользователем в панели фильтров. При снятии галочки поток уничтожается (`.abort()`), а соединение закрывается.
+- **Многопоточность на Rust**: Каждый тикер обрабатывается в изолированном асинхронном таске с помощью `tokio::spawn`.
+- **Потокобезопасный кэш**: Данные котировок аккумулируются в бэкенде внутри структуры `Arc<RwLock<HashMap>>` и мгновенно отдаются фронтенду по запросу.
+- **Кастомный UI**: Интерфейс выполнен в стиле биржевого терминала с поддержкой темной темы, сортировкой монет по алфавиту и цветовой индикацией тренда изменений (24ч).
 
-A crypto arbitrage tool tracking exchange rates, commissions, and fees across platforms for profitable trading. Future updates will include P2P market monitoring to surface the best deals. Currently in active development and preparing for beta testing.
+## 🛠 Стек технологий
+
+- **Backend**: Rust, Tauri V2 (Core API), Tokio (асинхронный рантайм), Serde (сериализация данных).
+- **Frontend**: TypeScript, Ванильный HTML5, CSS3 (CSS Grid/Flexbox), Vite (сборщик).
+
+## 📦 Как запустить проект локально
+
+### Требования
+Для сборки приложения на вашем компьютере должны быть установлены:
+1. [Rust и Cargo](https://rust-lang.org) (версия 1.75 или выше).
+2. [Node.js](https://nodejs.org) (LTS версия) и менеджер пакетов `npm`.
+
+### Пошаговая установка
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com
+   cd ferrumdex
+   ```
+
+2. Установите зависимости фронтенда:
+   ```bash
+   npm install
+   ```
+
+3. Запустите приложение в режиме разработки (Tauri автоматически скомпилирует Rust-бэкенд и запустит Vite Dev Server):
+   ```bash
+   npm run tauri dev
+   ```
+
+## 📂 Структура проекта
+
+- `src-tauri/src/lib.rs` — ядро бэкенда, регистрация стейта приложения и обработка Tauri-команд (`invoke`).
+- `src-tauri/src/parser.rs` — реализация WebSocket-клиента для Bybit API.
+- `src/main.ts` — TypeScript логика: управление чекбоксами, вызовы команд бэкенда и отрисовка таблиц котировок.
+- `src/styles.css` — кастомные стили темной темы торгового терминала.
+
