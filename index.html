@@ -1,22 +1,51 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri App</title>
-    <script type="module" src="/src/main.ts" defer></script>
-  </head>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bybit Price Monitor</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Левая часть: Таблица -->
+    <div class="table-container">
+      <header>
+        <h1>Контроль монет Bybit</h1>
+      </header>
+      <main>
+        <table class="crypto-table">
+          <thead>
+            <tr>
+              <th>Монета</th>
+              <th>Курс (USDT)</th>
+              <th>Изменение</th>
+            </tr>
+          </thead>
+          <tbody id="coin-table-body">
+            <tr>
+              <td colspan="3" class="loading">Загрузка данных...</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
 
-  <body>
-    <main class="container">
-      <h1>Welcome to FerrumDex</h1>
-      <div class="price-container">
-        <h3>Курс BTC/USDT (Bybit WS):</h3>
-        <div id="crypto-price" style="font-size: 24px; font-weight: bold; color: #646cff;">
-          Подключение...
-        </div>
+    <!-- Правая часть: Фильтр монет -->
+    <aside class="filter-panel">
+      <h2>Фильтр монет</h2>
+      <div class="filter-actions">
+        <label class="checkbox-container select-all-label">
+          <input type="checkbox" id="select-all-coins" checked>
+          <span class="checkbox-text"><strong>Выбрать все</strong></span>
+        </label>
       </div>
-    </main>
-  </body>
+      <!-- Сюда TypeScript динамически добавит чекбоксы для каждой монеты -->
+      <div id="checkboxes-list" class="checkboxes-list"></div>
+    </aside>
+  </div>
+
+  <!-- ИСПРАВЛЕНИЕ: Подключен главный файл логики с относительным путем -->
+  <script type="module" src="src/main.ts"></script>
+</body>
 </html>
