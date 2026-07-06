@@ -10,7 +10,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 
 [dependencies]
 # Главный движок Tauri и его системные фичи
-tauri = { version = "2.0", features = [] }
+tauri = { version = "2.11.5", features = [] }
 
 # Открытие вкладок в браузере
 tauri-plugin-opener = "2.0.0"
@@ -28,16 +28,20 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # Асинхронное подключение к Redis через Tokio
-redis = { version = "0.25", features = ["tokio-comp", "aio"] }
+redis = { version = "1.3.0", features = ["tokio-comp", "aio"] }
 
 # Асинхронная работа с PostgreSQL (с проверкой SQL при компиляции)
-sqlx = { version = "0.7", features = ["runtime-tokio", "postgres", "macros", "chrono", "uuid"] }
+sqlx = { version = "0.9.0", features = ["runtime-tokio", "postgres", "macros", "chrono", "uuid"] }
 
 # Быстрый и легкий асинхронный клиент для WebSockets API бирж
-tokio-tungstenite = { version = "0.21", features = ["rustls-tls-native-roots"] }
+tokio-tungstenite = { version = "0.29.0", features = ["rustls-tls-native-roots"] }
 
 # Для обработки сетевых TLS-соединений (HTTPS / WSS)
 native-tls = "0.2"
+rustls = { version = "0.23.41", features = ["ring"] }
+
+# Для Разорхивации Gzip архивов
+flate2 = { version = "1.0", default-features = false, features = ["zlib-ng"] }
 
 [features]
 # Оставляем стандартное поведение Tauri для кастомных протоколов

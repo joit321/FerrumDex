@@ -7,28 +7,9 @@ interface CoinInfo {
   change_24h: number;
 }
 
-// Замените этот массив на ваши реальные 50 монет
+// Массив с монетами
 const ALL_TICKERS = [
-  "BTCUSDT", "ETHUSDT", "SOLUSDT", "SLXUSDT", 
-  "HYPEUSDT", "XRPUSDT", "ARXUSDT", "WLDUSDT",
-  "NEARUSDT", "XPLUSDT", "POPCATUSDT", "GRAMUSDT",
-  "ENAUSDT", "LINKUSDT", "IPUSDT", "SUIUSDT",
-  "DOGEUSDT", "ADAUSDT", "INJUSDT", "BILLUSDT",
-  "ASTERUSDT", "AEROUSDT", "LTCUSDT", "CCUSDT",
-  "LITUSDT", "BNBUSDT", "ZETAUSDT", "MONUSDT",
-  "ONDOUSDT", "BASEDUSDT", "PUMPUSDT", "PEPEUSDT",
-  "CRVUSDT", "XLMUSDT", "GRASSUSDT", "RESOLVUSDT",
-  "OPGUSDT", "VIRTUALUSDT", "BICOUSDT", "AAVEUSDT",
-  "BSBUSDT", "UNIUSDT", "PENGUUSDT", "KASUSDT",
-  "VVVUSDT", "JTOUSDT", "PARTIUSDT", "TRUMPUSDT",
-  "DYDXUSDT", "ZBTUSDT", "MEGAUSDT", "DOTUSDT",
-  "NIGHTUSDT", "EIGENUSDT", "STETHUSDT", "WIFUSDT",
-  "AVNTUSDT", "HOMEUSDT", "ATHUSDT", "ALGOUSDT",
-  "ATOMUSDT", "BCHUSDT", "SHIBUSDT", "BELUSDT",
-  "WLFIUSDT", "METUSDT", "FETUSDT", "TIAUSDT",
-  "JUPUSDT", "CHIPUSDT", "TRIAUSDT", "KAIAUSDT",
-  "LDOUSDT", "RENDERUSDT", "ROAMUSDT", "APTUSDT",
-  "DRIFTUSDT", "BONKUSDT", "ZEREBROUSDT", "APEXUSDT", "FILUSDT"
+  "BTC", "ETH", "SOL", "SLX",
 ];
 
 // Функция создания чекбоксов (теперь вызывается сразу при старте)
@@ -50,7 +31,6 @@ function createFilterPanel() {
     checkbox.checked = false; // По умолчанию выключены для экономии ресурсов
     checkbox.dataset.ticker = ticker;
 
-    // ВНИМАНИЕ: Изменено на camelCase для Tauri v2!
     checkbox.addEventListener("change", async (e) => {
       const target = e.target as HTMLInputElement;
       try {
@@ -67,7 +47,7 @@ function createFilterPanel() {
 
     const text = document.createElement("span");
     text.className = "checkbox-text";
-    text.textContent = ticker.replace("USDT", "");
+    text.textContent = ticker;
 
     label.appendChild(checkbox);
     label.appendChild(text);
