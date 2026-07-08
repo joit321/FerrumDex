@@ -1,4 +1,4 @@
-# ❄️THE PROJECT IS FROSEN
+# ❄️THE PROJECT IS FROZEN
 # FerrumDex — Bybit Price Monitor
 
 Интерактивный трекер котировок криптовалютной биржи Bybit в реальном времени. Приложение построено на базе высокопроизводительного бэкенда на Rust и легковесного фронтенда на TypeScript.
