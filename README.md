@@ -1,3 +1,4 @@
+# ❄️THE PROJECT IS FROSEN
 # FerrumDex — Bybit Price Monitor
 
 Интерактивный трекер котировок криптовалютной биржи Bybit в реальном времени. Приложение построено на базе высокопроизводительного бэкенда на Rust и легковесного фронтенда на TypeScript.
@@ -25,8 +26,8 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com
-   cd ferrumdex
+   git clone https://github.com/joit321/FerrumDex.git
+   cd FerrumDex
    ```
 
 2. Установите зависимости фронтенда:

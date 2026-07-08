@@ -1,7 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 // Импортируем модули парсеров, чтобы они были доступны внутри src-tauri
-mod bingxparser;
+mod okxparser;
 mod bybitparser;
 
 #[tokio::main]

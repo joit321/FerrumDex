@@ -1,4 +1,4 @@
-mod bingxparser;
+mod okxparser;
 mod bybitparser;
 use serde::Serialize;
 use std::collections::HashMap;
@@ -70,7 +70,7 @@ async fn start_coin_tracker(
 
         // Запускаем сам парсер WebSocket в отдельном потоке внутри этой задачи
         tokio::spawn(async move {
-            bybitparser::start_price_tracker(&mut ticker_for_parser, local_shared_price).await;
+            okxparser::start_price_tracker(&mut ticker_for_parser, local_shared_price).await;
         });
 
         // Внутренний цикл обновления кэша конкретной монеты каждые 2 секунды
@@ -156,7 +156,7 @@ pub fn run() {
         println!("=== ТЕСТ: Принудительный запуск парсинга BTCUSDT при старте ===");
         let local_shared_price = Arc::new(RwLock::new(0.0));
         // Передаем в парсер
-        bybitparser::start_price_tracker(&mut format!("BTC"), local_shared_price.clone()).await;
+        okxparser::start_price_tracker(&mut format!("BTC"), local_shared_price.clone()).await;
     });
     // -------------------------------------------------------
 
